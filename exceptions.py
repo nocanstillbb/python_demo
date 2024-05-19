@@ -1,3 +1,4 @@
+from log import Logger
 print("\n>>>>  异常")
 
 class MyCustomEroor(Exception):
@@ -34,3 +35,8 @@ else:
     print("如果没有异常打印这行")
 finally:
     print("无论是否有异常都将打印")
+
+
+def tst_loggin_from_another_module():
+    l = Logger(__name__)
+    l.info("hehe")
