@@ -15,6 +15,7 @@ print("\n>>>>   类装饰器")
 class  CountDecorator:
     def __init__(self,func) -> None:
         self.func = func
+        self.count = 0
 
     def __call__(self, *args, **kwds):
         self.count +=1
