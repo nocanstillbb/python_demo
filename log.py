@@ -1,6 +1,7 @@
 import logging
 import inspect
 import threading
+import os
 
 #配置日志
 logging.basicConfig(level=logging.DEBUG , format="%(asctime)s.%(msecs)03d %(name)s %(levelname)-8s  %(message)s",
@@ -36,10 +37,11 @@ class Logger:
 
     def log(self, level, message):
         frame_info = inspect.stack()[2]
-        file_name = frame_info.filename
+        file_name =  os.path.basename(frame_info.filename) 
         line_number = frame_info.lineno
+        pid = os.getpid()
         tid = get_current_thread_id_short()
-        msg_prefix = f"{tid} {file_name}:{line_number} "
+        msg_prefix = f"{pid}:{tid} {file_name}:{line_number} "
         if(level == logging.critical):
             self._logger.critical(f"{msg_prefix}{message}",exc_info=True)
         else:

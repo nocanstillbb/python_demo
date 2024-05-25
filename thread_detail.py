@@ -44,7 +44,7 @@ logg = Logger()
 def run_task_thread_main(q):
     while True:
         t = q.get() #如果q里没有任务,会阻塞
-        logg.info(f"value : {t}")
+        logg.info(f"value : {t}") #打印出来的队列会是无序的,如果线程需要同步,即让打印出来的值是有序的,加锁就行,不过会导致额外的性能花销
         q.task_done()
 
 for i in range(10) : #打开10个线程处理队列, 不需要锁
