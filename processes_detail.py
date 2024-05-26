@@ -86,3 +86,7 @@ if __name__ == "__main__":
     inputs = [1,2,3,4,5,6]
 
     pool.map(add10,inputs)
+    #pool.apply(add10,inputs[0])# apply和map的区别就是Input是单个值不是List
+
+    pool.close();
+    pool.join()
